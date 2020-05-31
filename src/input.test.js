@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme";
-import { findByTestAttr } from "../test/testUtils";
+import { findByTestAttr, checkProps } from "../test/testUtils";
 import { Input } from "./Input";
 
 const setup = (props) => shallow(<Input {...props} />);
@@ -12,4 +12,9 @@ describe('Input component', () => {
     const component = findByTestAttr(wrapper, "input-component");
     expect(component.length).toBe(1);
   });
+
+  test('should not throw warning with expected props', () => {
+    checkProps(Input, { secretWord: "party"})
+  })
+  
 });
