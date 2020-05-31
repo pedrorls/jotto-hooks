@@ -1,5 +1,6 @@
 import React from "react";
 import hookActions from "./actions/hookActions";
+import { Input } from "./Input";
 import "./App.css";
 
 const reducer = (state, action) => {
@@ -21,7 +22,21 @@ const App = () => {
     hookActions.getSecretWord(setSecretWord);
   }, []);
 
-  return <div data-test="app-component" />;
+  return (
+    <React.Fragment>
+      {state.secretWord ? (
+        <div className="container" data-test="app-component">
+          <Input secretWord={state.secretWord} />
+        </div>
+      ) : (
+        <div className="container" data-test="spinner-component">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading ...</span>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
+  );
 };
 
 export default App;
