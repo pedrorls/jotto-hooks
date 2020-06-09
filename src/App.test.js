@@ -9,7 +9,9 @@ const mockFn = jest.fn();
 const setup = (secretWord = "party") => {
   hookActions.getSecretWord = mockFn;
   mockFn.mockClear();
-  const reducerMock = jest.fn().mockReturnValue([{ secretWord }, jest.fn()]);
+  const reducerMock = jest
+    .fn()
+    .mockReturnValue([{ secretWord, language: "en" }, jest.fn()]);
   React.useReducer = reducerMock;
   return mount(<App />);
 };
